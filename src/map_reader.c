@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 22:49:26 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/02 18:38:17 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/04 12:36:24 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,69 +67,48 @@ int	map_width(char *mapfile)
 	return (multival[2]);
 }
 
-/*
-//Function reads from a 2D char string array to make a 1D int array.
-int	*line_read(char **strarr)
+//Function fills an line int array with data from a map file line.
+static void	height_matrix(int *height_row, char *line)
 {
-	int	*arrline;
-	int	numel;
-	int i;
+	char	**elms;
+	int		i;
 
-	numel = 0;
-	while (strarr[numel])
-	{
-		numel++;
-	}
-	arrline = malloc(numel * sizeof(*arrline));
+	elms = ft_split(line, ' ');
 	i = 0;
-	while (strarr[i])
+	while (elms[i])
 	{
-		arrline[i] = ft_atoi(strarr[i]);
+		height_row[i] = ft_atoi(elms[i]);
+		free(elms[i]);
 		i++;
 	}
-	return (arrline);
+	free(elms);
 }
 
-//Function converts map input file to integer 2D-array.
-int	**map_arr(int fd)
+//Function fills map data from a mapfile (or returns error if invalid).
+int	map_data(t_mapdata *data, char *mapfile)
 {
 	char	*line;
-	char	**strarr;
-	int		**arr;
-	int		*arrline;
+	int		fd;
 	int		i;
-	int		j;
 
+	data->width = map_width(mapfile);
+	if (data->width == -1)
+		return (-1);
+	data->depth = map_depth(mapfile);
+	data->height_data = (int **)malloc((data->depth + 1) * sizeof(int *));
 	i = 0;
-	line = 0;
+	while (i <= data->depth)
+		data->height_data[i++] = (int *)malloc((data->width + 1) * sizeof(int));
+	fd = open(mapfile, O_RDONLY, 0);
+	line = get_next_line(fd);
+	i = 0;
 	while (line != 0)
 	{
-		line = get_next_line(fd);
-		strarr = ft_split(line, ' ');
-		arrline = line_read(strarr);
+		if (i > 0)
+			line = get_next_line(fd);
+		height_matrix(data->height_data[i], line);
 		free(line);
-		j = 0;
-		while (arr[i][j])
-		{
-			arr[i][j] = arrline[j];
-			j++;
-		}
-		arr_free(strarr);
 		i++;
 	}
-	return (arr);
+	return (1);
 }
-
-int	map_max_height(int fd)
-{
-	
-	while()
-	{
-		(get next line)
-		(ft split)
-		(scan for max)
-			(if greater than last, replace)
-	}
-	return (fd);
-}
-*/
