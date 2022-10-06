@@ -6,34 +6,54 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:49:48 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/05 20:45:44 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/06 20:42:56 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
+#include <stdlib.h>
+
+//Function defines the parameters for the Bresenham line algorithm.
+void	bresenham_define(t_bresenham *param, t_pointpair points)
+{
+	param->dx = abs(points.x2 - points.x1);
+	param->dy = -1 * abs(points.y2 - points.y1);
+	if (points.x1 < points.x2)
+		param->sx = 1;
+	else
+		param->sx = -1;
+	if (points.y1 < points.y2)
+		param->sy = 1;
+	else
+		param->sy = -1;
+	param->err = param->dx + param->dy;
+	param->x0 = points.x1;
+	param->y0 = points.y1;
+}
 
 //Function draws a line between points using Bresenham's algorithm.
-void	bresenham_draw(t_pointpair points, t_mlxdata mlx)
+void	bresenham_draw(t_pointpair points, mlx_image_t *image)
 {
-	int	x_step;
-	int	y_step;
-	int	decision;
-	int	y_out;
-	int	x_var;
+	t_bresenham	*param;
 
-	x_step = points.x2 - points.x1;
-	y_step = points.y2 - points.y1;
-	decision = 2 * y_step - x_step;
-	y_out = points.y1;
-	x_var = 0;
-	while (x_var++ <= points.x2)
+	param = (t_bresenham *)malloc(sizeof(t_bresenham));
+	bresenham_define(param, points);
+	while (image)
 	{
-		mlx_pixel_put(mlx.mlx, mlx.window, x_var, y_out, 0xFFFFFFFF);
-		if (decision > 0)
+		mlx_put_pixel(image, param->x0, param->y0, 0xFFFFFFFF);
+		if (param->x0 == points.x2 && param->y0 == points.y2)
+			break ;
+		param->err2 = 2 * param->err;
+		if (param->err2 >= param->dy)
 		{
-			y_out++;
-			decision -= 2*x_step;
+			param->err += param->dy;
+			param->x0 += param->sx;
 		}
-		decision += 2*y_step;
+		if (param->err2 <= param->dx)
+		{
+			param->err += param->dx;
+			param->y0 += param->sy;
+		}
 	}
+	free(param);
 }
