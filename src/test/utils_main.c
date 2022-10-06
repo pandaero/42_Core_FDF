@@ -1,7 +1,7 @@
 //Tests for the functions in map_reader.c
 #include "../../fdf.h"
 
-//* ft_chkarr test
+/* ft_chkarr test
 // run: gcc -Wall -Werror -Wextra utils_main.c ../ *.c ../../libft/libft.a
 int main(void)
 {
