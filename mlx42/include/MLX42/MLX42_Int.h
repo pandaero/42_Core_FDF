@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   MLX42_Int.h                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: W2Wizard <w2.wizzard@gmail.com>              +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2021/12/27 23:55:34 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2022/07/21 10:46:43 by sbos          ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   MLX42_Int.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/27 23:55:34 by W2Wizard          #+#    #+#             */
+/*   Updated: 2022/10/06 13:31:03 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,20 @@
 # include "KHR/khrplatform.h"
 # if defined(__APPLE__)
 #  define GL_SILENCE_DEPRECATION
+#  include </Users/pandalaf/.brew/opt/glfw/include/GLFW/glfw3.h>
 # endif
-# include <GLFW/glfw3.h>
 # include <stdlib.h>
 # include <memory.h>
 # include <stdio.h>
 # if defined(__linux__)
 #  include <linux/limits.h>
+#  include <GLFW/glfw3.h>
 # else
 #  include <limits.h>
 # endif
 # if defined(_WIN32)
 #  include <windows.h>
+#  include <GLFW/glfw3.h>
 # else
 #  include <err.h>
 # endif
