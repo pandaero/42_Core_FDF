@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 23:21:11 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/07 02:07:29 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/07 08:28:31 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #  define HEIGHT 600
 # endif
 # ifndef X_OFFSET
-#  define X_OFFSET 300
+#  define X_OFFSET 250
 # endif
 # ifndef Y_OFFSET
 #  define Y_OFFSET 100
@@ -27,14 +27,6 @@
 
 # include "./libft/libft.h"
 # include "./mlx42/include/MLX42/MLX42.h"
-
-
-typedef struct s_coords
-{
-	int	x;
-	int	y;
-	int z;
-}		t_coords;
 
 typedef struct s_mapdata
 {
@@ -77,8 +69,8 @@ int		map_depth(char *mapfile);
 int		map_width(char *mapfile);
 //Function fills map data from a mapfile (or returns error if invalid).
 int		map_data(t_mapdata *data, char *mapfile);
-//Function frees a 2D array of allocated memory.
-void	arr_free(char **arr);
+//Function frees a 2D int array.
+void	free_twodee(int **ptr, int lim);
 //Function draws a line between points using Bresenham's algorithm.
 void	bresenham_draw(t_pointpair *points, mlx_image_t *image);
 //Function applies transformations before using Bresenham's drawing.

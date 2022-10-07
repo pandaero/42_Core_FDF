@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 21:27:04 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/07 02:18:14 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/07 08:22:54 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ static void	hook(void *param)
 {
 	mlx_t	*mlx;
 
-	mlx = param;
+	mlx = (mlx_t *)param;
 	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(mlx);
 }
 
-//Function
+//Function calls mlx elements.
 static void	mlxevents(t_mlxdata *data)
 {
 	mlx_image_to_window(data->mlx, data->image, 0, 0);
@@ -77,6 +77,7 @@ int	main(int argc, char **argv)
 	draw_horiz(mapdata, mlxdata);
 	draw_vert(mapdata, mlxdata);
 	mlxevents(mlxdata);
+	free_twodee(mapdata->height_data, mapdata->depth);
 	free(mapdata);
 	free(mlxdata);
 	return (0);
