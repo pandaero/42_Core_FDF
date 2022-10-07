@@ -6,7 +6,7 @@
 #    By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/30 23:15:27 by pandalaf          #+#    #+#              #
-#    Updated: 2022/10/07 08:16:18 by pandalaf         ###   ########.fr        #
+#    Updated: 2022/10/07 08:49:48 by pandalaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRC_DIR := src/
 SRC_FILES := fdf.c map_reader.c draw.c draw_grid.c project.c utils.c
 SRCS = $(addprefix $(SRC_DIR), $(SRC_FILES))
 BSRC_DIR := src/bonus/
-BSRC_FILES :=
+BSRC_FILES := fdf_bonus.c
 BSRCS := $(addprefix $(BSRC_DIR), $(BSRC_FILES))
 # Object identification (not necessary)
 #OBJ_DIR := obj/
@@ -52,7 +52,7 @@ $(NAME): $(SRCS) $(LIBFT) $(MLX)
 	$(CC) $(COPTIONS) $(CFLAGS) -o $(NAME) $(SRCS) $(LIBFT_FULL) $(MLX_FULL) \
 	$(LIBS)
 
-bonus: $(BOBJS) $(LIBFT) $(MLX)
+bonus: $(BSRCS) $(LIBFT) $(MLX)
 	$(CC) $(COPTIONS) $(CFLAGS) -o $(BONUS_NAME) $(BSRCS) $(SRCS) \
 	$(LIBFT_FULL) $(MLX_FULL) $(LIBS)
 
