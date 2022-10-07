@@ -6,14 +6,13 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 21:27:04 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/07 08:22:54 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/07 08:37:06 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <fcntl.h>
-#include <errno.h>
 #include "../fdf.h"
 
 static int	error_handling(int argcnt, char *file)
