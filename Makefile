@@ -6,7 +6,7 @@
 #    By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/30 23:15:27 by pandalaf          #+#    #+#              #
-#    Updated: 2022/10/07 02:21:57 by pandalaf         ###   ########.fr        #
+#    Updated: 2022/10/07 08:15:17 by pandalaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,11 +48,11 @@ endif
 
 all: $(NAME)
 
-$(NAME): $(SRCS) $(LIBFT)
+$(NAME): $(SRCS) $(LIBFT) $(MLX)
 	$(CC) $(COPTIONS) $(CFLAGS) -o $(NAME) $(SRCS) $(LIBFT_FULL) $(MLX_FULL) \
 	$(LIBS)
 
-bonus: $(BOBJS) $(LIBFT)
+bonus: $(BOBJS) $(LIBFT) $(MLX)
 	$(CC) $(COPTIONS) $(CFLAGS) -o $(BONUS_NAME) $(BSRCS) $(SRCS) \
 	$(LIBFT_FULL) $(MLX_FULL) $(LIBS)
 
@@ -72,10 +72,12 @@ $(OBJ_DIR):
 clean:
 	rm -fr $(OBJ_DIR)
 	make -C $(LIBFT_PATH) clean
+	make -C $(MLX_PATH) clean
 
 fclean: clean
 	rm -f $(NAME)
 	make -C $(LIBFT_PATH) fclean
+	make -C $(MLX_PATH) fclean
 
 re: fclean all
 
