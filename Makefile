@@ -6,7 +6,7 @@
 #    By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/30 23:15:27 by pandalaf          #+#    #+#              #
-#    Updated: 2022/10/07 08:49:48 by pandalaf         ###   ########.fr        #
+#    Updated: 2022/10/07 09:34:01 by pandalaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,8 +42,7 @@ ifeq ($(OS), Linux)
 	LIBS += -lglfw -lm
 endif
 ifeq ($(OS), Darwin)
-	LIBS += -Lmlx -lmlx -framework OpenGL -framework AppKit
-	SRCS_NAMES += destroy_mac
+	LIBS += -I include -lglfw -L "/Users/$USER/.brew/opt/glfw/lib/"
 endif
 
 all: $(NAME)
