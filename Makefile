@@ -6,7 +6,7 @@
 #    By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/30 23:15:27 by pandalaf          #+#    #+#              #
-#    Updated: 2022/10/07 08:15:17 by pandalaf         ###   ########.fr        #
+#    Updated: 2022/10/07 08:16:18 by pandalaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,6 @@ bonus: $(BOBJS) $(LIBFT) $(MLX)
 	$(CC) $(COPTIONS) $(CFLAGS) -o $(BONUS_NAME) $(BSRCS) $(SRCS) \
 	$(LIBFT_FULL) $(MLX_FULL) $(LIBS)
 
-# Make complete libft with bonus
 $(LIBFT): $(LIBFT_PATH)
 	make -C $(LIBFT_PATH) bonus
 
