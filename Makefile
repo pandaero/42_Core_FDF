@@ -6,7 +6,7 @@
 #    By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/30 23:15:27 by pandalaf          #+#    #+#              #
-#    Updated: 2022/10/05 18:19:04 by pandalaf         ###   ########.fr        #
+#    Updated: 2022/10/07 02:21:57 by pandalaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,12 +22,12 @@ LIBFT := libft.a
 LIBFT_PATH := libft/
 LIBFT_FULL = $(addprefix $(LIBFT_PATH), $(LIBFT))
 # Minilibx
-MLX := libmlx_Linux.a
-MLX_PATH := minilibx-linux/
+MLX := libmlx42.a
+MLX_PATH := mlx42/
 MLX_FULL = $(addprefix $(MLX_PATH), $(MLX))
 # Sources identification
 SRC_DIR := src/
-SRC_FILES := fdf.c map_reader.c utils.c
+SRC_FILES := fdf.c map_reader.c draw.c draw_grid.c project.c utils.c
 SRCS = $(addprefix $(SRC_DIR), $(SRC_FILES))
 BSRC_DIR := src/bonus/
 BSRC_FILES :=
@@ -39,7 +39,7 @@ BSRCS := $(addprefix $(BSRC_DIR), $(BSRC_FILES))
 # OS-Specific differences
 OS = $(shell uname)
 ifeq ($(OS), Linux)
-	LIBS += -lX11 -lXext 
+	LIBS += -lglfw -lm
 endif
 ifeq ($(OS), Darwin)
 	LIBS += -Lmlx -lmlx -framework OpenGL -framework AppKit
@@ -49,11 +49,12 @@ endif
 all: $(NAME)
 
 $(NAME): $(SRCS) $(LIBFT)
-	$(CC) $(COPTIONS) $(CFLAGS) -o $(NAME) $(SRCS) $(LIBFT_FULL) $(MLX_FULL)
+	$(CC) $(COPTIONS) $(CFLAGS) -o $(NAME) $(SRCS) $(LIBFT_FULL) $(MLX_FULL) \
+	$(LIBS)
 
 bonus: $(BOBJS) $(LIBFT)
-	$(CC) $(COPTIONS) $(CFLAGS) -o $(BONUS_NAME) $(BSRCS) $(SRCS)\
-	$(LIBFT_FULL) $(MLX_FULL)
+	$(CC) $(COPTIONS) $(CFLAGS) -o $(BONUS_NAME) $(BSRCS) $(SRCS) \
+	$(LIBFT_FULL) $(MLX_FULL) $(LIBS)
 
 # Make complete libft with bonus
 $(LIBFT): $(LIBFT_PATH)
