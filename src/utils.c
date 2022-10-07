@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 16:24:53 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/07 08:23:07 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/07 08:36:02 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_chkarr(int *arr, int size)
 	while (i < size)
 	{	
 		if (arr[i] != arr[0])
-			return (0);	
+			return (0);
 		i++;
 	}
 	return (1);
