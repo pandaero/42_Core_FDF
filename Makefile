@@ -6,7 +6,7 @@
 #    By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/30 23:15:27 by pandalaf          #+#    #+#              #
-#    Updated: 2022/10/07 09:34:01 by pandalaf         ###   ########.fr        #
+#    Updated: 2022/10/09 17:12:41 by pandalaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,10 +32,6 @@ SRCS = $(addprefix $(SRC_DIR), $(SRC_FILES))
 BSRC_DIR := src/bonus/
 BSRC_FILES := fdf_bonus.c
 BSRCS := $(addprefix $(BSRC_DIR), $(BSRC_FILES))
-# Object identification (not necessary)
-#OBJ_DIR := obj/
-#OBJS := $(addprefix $(OBJ_DIR), $(SRC_FILES:.c=.o))
-#BOBJS := $(addprefix $(OBJ_DIR), $(BSRC_FILES:.c=.o))
 # OS-Specific differences
 OS = $(shell uname)
 ifeq ($(OS), Linux)
@@ -61,14 +57,7 @@ $(LIBFT): $(LIBFT_PATH)
 $(MLX): $(MLX_PATH)
 	make -C $(MLX_PATH) all
 
-$(addprefix $(OBJ_DIR), %.o): %.c | $(OBJ_DIR)
-	$(CC) $(COPTIONS) $(CFLAGS) $^ -o $@
-
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
-
 clean:
-	rm -fr $(OBJ_DIR)
 	make -C $(LIBFT_PATH) clean
 	make -C $(MLX_PATH) clean
 
