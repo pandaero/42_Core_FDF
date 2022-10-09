@@ -6,7 +6,7 @@
 #    By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/30 23:15:27 by pandalaf          #+#    #+#              #
-#    Updated: 2022/10/09 17:12:41 by pandalaf         ###   ########.fr        #
+#    Updated: 2022/10/09 17:37:47 by pandalaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,13 +32,16 @@ SRCS = $(addprefix $(SRC_DIR), $(SRC_FILES))
 BSRC_DIR := src/bonus/
 BSRC_FILES := fdf_bonus.c
 BSRCS := $(addprefix $(BSRC_DIR), $(BSRC_FILES))
+
+# MacOS User
+USER = pandalaf
 # OS-Specific differences
 OS = $(shell uname)
 ifeq ($(OS), Linux)
 	LIBS += -lglfw -lm
 endif
 ifeq ($(OS), Darwin)
-	LIBS += -I include -lglfw -L "/Users/$USER/.brew/opt/glfw/lib/"
+	LIBS += -I include -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/"
 endif
 
 all: $(NAME)
