@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 23:21:11 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/07 08:28:31 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/20 19:44:18 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # endif
 
 # include "./libft/libft.h"
-# include "./mlx42/include/MLX42/MLX42.h"
+# include <mlx.h>
 
 typedef struct s_mapdata
 {
