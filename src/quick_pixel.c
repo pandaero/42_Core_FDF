@@ -6,14 +6,14 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 20:06:33 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/20 20:09:31 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/20 20:11:30 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
 //Function works out the memory address offset of a pixel from its image.
-int	memoffset(int x, int y, int line_len, int bits_pp)
+static int	memoffset(int x, int y, int line_len, int bits_pp)
 {
 	int offset;
 
