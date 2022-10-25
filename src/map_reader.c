@@ -6,16 +6,16 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 22:49:26 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/25 12:05:50 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/25 12:07:06 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../fdf.h"
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <limits.h>
-#include "../fdf.h"
 
 //Function reads from a map file to determine the depth of the map.
 int	map_depth(char *mapfile)
