@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 20:06:33 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/20 20:11:30 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/25 11:53:51 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	quick_put_pixel(t_imgdata *data, int x, int y, int color)
 {
 	char	*dest;
 
-	dest = data->address + memoffset(x, y, data->line_len, data->bits_pp);
+	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
+		dest = data->address + memoffset(x, y, data->line_len, data->bits_pp);
 	*(unsigned int *)dest = color;
 }
