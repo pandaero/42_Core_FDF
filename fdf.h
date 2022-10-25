@@ -6,17 +6,17 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 23:21:11 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/20 19:44:18 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/25 11:57:43 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 # ifndef WIDTH
-#  define WIDTH 600
+#  define WIDTH 640
 # endif
 # ifndef HEIGHT
-#  define HEIGHT 600
+#  define HEIGHT 480
 # endif
 # ifndef X_OFFSET
 #  define X_OFFSET 250
@@ -35,7 +35,7 @@ typedef struct s_mapdata
 	int	**height_data;
 }		t_mapdata;
 
-typedef struct	s_pointpair
+typedef struct s_pointpair
 {
 	int	x1;
 	int	y1;
@@ -43,7 +43,7 @@ typedef struct	s_pointpair
 	int	y2;
 }		t_pointpair;
 
-typedef struct	s_bresenham
+typedef struct s_bresenham
 {
 	int	x0;
 	int	y0;
@@ -55,7 +55,16 @@ typedef struct	s_bresenham
 	int	err2;
 }		t_bresenham;
 
-typedef struct	s_mlxdata
+typedef struct s_imgdata
+{
+	void	*image;
+	char	*address;
+	int		bits_pp;
+	int		line_len;
+	int		endian;
+}			t_imgdata;
+
+typedef struct s_mlxdata
 {
 	void	*mlx;
 	void	*image;
@@ -71,6 +80,8 @@ int		map_width(char *mapfile);
 int		map_data(t_mapdata *data, char *mapfile);
 //Function frees a 2D int array.
 void	free_twodee(int **ptr, int lim);
+//Function places a pixel in an image more quickly than with the pixel_put fn.
+void	quick_put_pixel(t_imgdata *data, int x, int y, int color);
 //Function draws a line between points using Bresenham's algorithm.
 void	bresenham_draw(t_pointpair *points, mlx_image_t *image);
 //Function applies transformations before using Bresenham's drawing.
