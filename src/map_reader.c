@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 22:49:26 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/04 12:36:24 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/25 12:05:50 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	map_width(char *mapfile)
 	return (multival[2]);
 }
 
-//Function fills an line int array with data from a map file line.
+//Function fills an int array with data from a map file line.
 static void	height_matrix(int *height_row, char *line)
 {
 	char	**elms;
