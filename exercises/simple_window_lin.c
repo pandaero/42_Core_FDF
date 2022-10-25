@@ -1,6 +1,6 @@
 // Exercise to open a window and write pixels to it.
 // Using minilibx-linux
-// run: cc -lmlx -framework OpenGL -framework AppKit simple_window.c
+// run: cc -lmlx -framework OpenGL -framework AppKit simple_window_lin.c
 
 #include <mlx.h>
 #include <stdio.h>
@@ -12,7 +12,13 @@ typedef struct	s_vars
 	void	*window;
 }			t_vars;
 
-int	closing(int key, t_vars *mlxvars)
+int	closing(t_vars *mlxvars)
+{
+	mlx_destroy_window(mlxvars->mlx, mlxvars->window);
+	exit(0);
+}
+
+int	key_closing(int key, t_vars *mlxvars)
 {
 	if (key == 53)
 	{
@@ -40,7 +46,8 @@ int	main(void)
 		mlx_pixel_put(vars->mlx, vars->window, 500/2, i, 0x00FFFFFF);
 		i++;
 	}
-	mlx_hook(vars->window, 3, 0, closing, vars);
+	mlx_hook(vars->window, 17, 0, closing, vars);
+	mlx_hook(vars->window, 3, 0, key_closing, vars);
 	mlx_loop(vars->mlx);
 	return (0);
 }
