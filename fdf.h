@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 23:21:11 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/25 11:57:43 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/25 12:00:41 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ int		map_depth(char *mapfile);
 int		map_width(char *mapfile);
 //Function fills map data from a mapfile (or returns error if invalid).
 int		map_data(t_mapdata *data, char *mapfile);
-//Function frees a 2D int array.
-void	free_twodee(int **ptr, int lim);
+//Function frees a 2D int array, given its size.
+void	free_twodee(int **intarr, int sz);
 //Function places a pixel in an image more quickly than with the pixel_put fn.
 void	quick_put_pixel(t_imgdata *data, int x, int y, int color);
 //Function draws a line between points using Bresenham's algorithm.

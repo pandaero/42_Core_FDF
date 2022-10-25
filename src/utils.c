@@ -6,14 +6,14 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 16:24:53 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/07 08:36:02 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/25 12:01:37 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 #include <stdlib.h>
 
-//Function checks that all the values in a 1D array are the same.
+//Function checks that all the values in a 1D array are the same, size given.
 int	ft_chkarr(int *arr, int size)
 {
 	int	i;
@@ -30,16 +30,16 @@ int	ft_chkarr(int *arr, int size)
 	return (1);
 }
 
-//Function frees a 2D int array.
-void	free_twodee(int **ptr, int lim)
+//Function frees a 2D int array, given its size.
+void	free_twodee(int **intarr, int sz)
 {
 	int	i;
 
 	i = 0;
-	while (i <= lim)
+	while (i <= sz)
 	{
-		free(ptr[i]);
+		free(intarr[i]);
 		i++;
 	}
-	free(ptr);
+	free(intarr);
 }
