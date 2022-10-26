@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 21:27:04 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/26 16:19:01 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/26 17:32:32 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	main(int argc, char **argv)
 
 	error_handling(argc, argv[1]);
 	mapdata = (t_mapdata *)malloc(sizeof(t_mapdata));
+	map_data(mapdata, argv[1]);
 	mlxdata = (t_mlxdata *)malloc(sizeof(t_mlxdata));
 	imdt = (t_imgdata *)malloc(sizeof(t_imgdata));
 	mlxdata->mlx = mlx_init();
