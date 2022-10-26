@@ -1,8 +1,8 @@
-//Tests for the functions in map_reader.c
+// Tests for the functions in utils.c
 #include "../../fdf.h"
 
-/* ft_chkarr test
-// run: gcc -Wall -Werror -Wextra utils_main.c ../ *.c ../../libft/libft.a
+/* Test for ft_chkarr
+// run: cc -Wall -Werror -Wextra utils_main.c ../utils.c ../../libft/libft.a
 int main(void)
 {
 	int	arr1[] = {0, 0, 0, 10, 0};
@@ -17,8 +17,45 @@ int main(void)
 }
 //*/
 
-/* Array size check tester - exercise
-// run: gcc utils_main.c
+/* Test for free_twodee
+// run:
+#include <stdlib.h>
+#include <stdio.h>
+
+int	main(void)
+{
+	int	**matrix;
+	int	i;
+	int	j;
+
+	matrix = (int **)malloc(2 * sizeof(int *));
+	matrix[0] = (int *)malloc(2 * sizeof(int));
+	matrix[1] = (int *)malloc(2 * sizeof(int));
+	matrix[0][0] = 5;
+	matrix[0][1] = 10;
+	matrix[1][0] = 2;
+	matrix[1][1] = 4;
+	//Show matrix
+	i = 0;
+	while (i < 2)
+	{
+		j = 0;
+		while (j < 2)
+		{
+			printf("%d ", matrix[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
+	//Free matrix
+	free_twodee(matrix, 2);
+	return (0);
+}
+//*/
+
+/* Exercise to check array size methods
+// run: cc utils_main.c
 #include <stdio.h>
 
 int main(void)
