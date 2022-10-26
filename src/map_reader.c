@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 22:49:26 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/26 13:52:43 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/26 16:19:30 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,13 @@ static void	height_matrix(int *height_row, char *line, int len)
 	free(elms);
 }
 
+//Function performs error actions for map_data
+static void	md_error(void)
+{
+	perror("Map reading error");
+	exit(1);
+}
+
 //Function fills map data from a mapfile (or returns error if invalid).
 int	map_data(t_mapdata *data, char *mapfile)
 {
@@ -94,7 +101,7 @@ int	map_data(t_mapdata *data, char *mapfile)
 	data->width = map_width(mapfile);
 	fd = open(mapfile, O_RDONLY, 0);
 	if (data->width == -1 || fd == -1)
-		return (-1);
+		md_error();
 	data->depth = map_depth(mapfile);
 	data->height_data = (int **)malloc((data->depth) * sizeof(int *));
 	i = 0;
