@@ -6,19 +6,12 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:49:48 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/06 23:58:25 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/26 14:32:27 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 #include <stdlib.h>
-
-//Function puts a pixel as long as it is within the window/image.
-static void	put_pixel(int x, int y, mlx_image_t *image)
-{
-	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
-		mlx_put_pixel(image, x, y, 0xFFFFFFFF);
-}
 
 //Function defines the parameters for the Bresenham line algorithm.
 static void	bresenham_define(t_bresenham *param, t_pointpair *points)
@@ -39,16 +32,16 @@ static void	bresenham_define(t_bresenham *param, t_pointpair *points)
 }
 
 //Function draws a line between points using Bresenham's algorithm.
-void	bresenham_draw(t_pointpair *points, mlx_image_t *image)
+void	bresenham_draw(t_pointpair *points, t_imgdata *imgdata)
 {
 	t_bresenham	*param;
 
 	param = (t_bresenham *)malloc(sizeof(t_bresenham));
 	bresenham_define(param, points);
-	while (image)
+	while (1)
 	{
-		put_pixel(param->x0, param->y0, image);
-		if (param->x0 == points->x2 && param->y0 == points->y2)
+		quick_put_pixel(imgdata, param->x0, param->y0, 0x00FFFFFF);
+		if (param->x0 == points->x2)
 			break ;
 		param->err2 = 2 * param->err;
 		if (param->err2 >= param->dy)
