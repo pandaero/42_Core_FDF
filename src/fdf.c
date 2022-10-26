@@ -6,53 +6,50 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 21:27:04 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/07 08:37:06 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/26 16:19:01 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../fdf.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <fcntl.h>
-#include "../fdf.h"
 
-static int	error_handling(int argcnt, char *file)
+//Function to close the program following a close-window click.
+static int	closing(t_mlxdata *mlxdata)
 {
-	int	fd;
+	mlx_destroy_window(mlxdata->mlx, mlxdata->mlxwindow);
+	exit(0);
+}
 
-	if (argcnt != 2)
+//Function to close the program following an ESC key release.
+static int	keyclosing(int key, t_mlxdata *mlxdata)
+{
+	if (key == 53)
 	{
-		if (argcnt > 2)
-			ft_printf("Too many arguments.\n");
-		else
-			ft_printf("Too few arguments.\n");
-		return (1);
-	}		
-	fd = open(file, O_RDONLY, 0);
-	if (fd == -1)
-	{
-		perror("File Error");
-		return (1);
+		mlx_destroy_window(mlxdata->mlx, mlxdata->mlxwindow);
+		exit(0);
 	}
 	return (0);
 }
 
-//Function that serves for hook actions for mlx.
-static void	hook(void *param)
+//Function calls mlx elements.
+static void	mlxevents(t_mlxdata *mlxdata, t_imgdata *imgdata)
 {
-	mlx_t	*mlx;
-
-	mlx = (mlx_t *)param;
-	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(mlx);
+	mlx_put_image_to_window(mlxdata->mlx, mlxdata->mlxwindow, \
+							imgdata->image, 0, 0);
+	mlx_hook(mlxdata->mlxwindow, 17, 0, closing, mlxdata);
+	mlx_hook(mlxdata->mlxwindow, 3, 0, keyclosing, mlxdata);
+	mlx_loop(mlxdata->mlx);
 }
 
-//Function calls mlx elements.
-static void	mlxevents(t_mlxdata *data)
+//Function frees program allocated elements.
+static void	free_prog(void *mlxdata, void *imgdata, t_mapdata *mapdata)
 {
-	mlx_image_to_window(data->mlx, data->image, 0, 0);
-	mlx_loop_hook(data->mlx, &hook, data->mlx);
-	mlx_loop(data->mlx);
-	mlx_terminate(data->mlx);
+	free_twodee(mapdata->height_data, mapdata->depth);
+	free(mapdata);
+	free(mlxdata);
+	free(imgdata);
 }
 
 //Function executes the program.
@@ -60,24 +57,27 @@ int	main(int argc, char **argv)
 {
 	t_mlxdata	*mlxdata;
 	t_mapdata	*mapdata;
+	t_imgdata	*imdt;
 
-	if (error_handling(argc, argv[1]) == 1)
-		return (0);
+	error_handling(argc, argv[1]);
 	mapdata = (t_mapdata *)malloc(sizeof(t_mapdata));
 	mlxdata = (t_mlxdata *)malloc(sizeof(t_mlxdata));
-	mlxdata->mlx = mlx_init(WIDTH, HEIGHT, "FDF", true);
-	mlxdata->image = mlx_new_image(mlxdata->mlx, WIDTH, HEIGHT);
-	if (!mlxdata->image || map_data(mapdata, argv[1]) == -1 || !mlxdata)
+	imdt = (t_imgdata *)malloc(sizeof(t_imgdata));
+	mlxdata->mlx = mlx_init();
+	mlxdata->mlxwindow = mlx_new_window(mlxdata->mlx, WIDTH, HEIGHT, "FdF");
+	imdt->image = mlx_new_image(mlxdata->mlx, WIDTH, HEIGHT);
+	imdt->address = mlx_get_data_addr(imdt->image, &imdt->bits_pp, \
+										&imdt->line_len, &imdt->endian);
+	if (!imdt->image || !mlxdata->mlxwindow || !mlxdata->mlx)
 	{
-		mlx_terminate(mlxdata->mlx);
-		ft_printf("Map, MLX, or Malloc Error\n");
+		mlx_destroy_window(mlxdata->mlx, mlxdata->mlxwindow);
+		ft_printf("MLX init, or Malloc Error\n");
+		free_prog(mlxdata, imdt, mapdata);
 		return (0);
 	}
-	draw_horiz(mapdata, mlxdata);
-	draw_vert(mapdata, mlxdata);
-	mlxevents(mlxdata);
-	free_twodee(mapdata->height_data, mapdata->depth);
-	free(mapdata);
-	free(mlxdata);
+	draw_horiz(mapdata, imdt);
+	draw_vert(mapdata, imdt);
+	mlxevents(mlxdata, imdt);
+	free_prog(mlxdata, imdt, mapdata);
 	return (0);
 }
