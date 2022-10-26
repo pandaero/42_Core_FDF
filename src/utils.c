@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 16:24:53 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/25 12:01:37 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/26 13:15:47 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	free_twodee(int **intarr, int sz)
 	int	i;
 
 	i = 0;
-	while (i <= sz)
+	while (i < sz)
 	{
 		free(intarr[i]);
 		i++;
