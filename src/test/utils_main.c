@@ -18,7 +18,7 @@ int main(void)
 //*/
 
 /* Test for free_twodee
-// run:
+// run: cc -Wall -Werror -Wextra utils_main.c ../utils.c
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -28,16 +28,19 @@ int	main(void)
 	int	i;
 	int	j;
 
-	matrix = (int **)malloc(2 * sizeof(int *));
+	matrix = (int **)malloc(3 * sizeof(int *));
 	matrix[0] = (int *)malloc(2 * sizeof(int));
 	matrix[1] = (int *)malloc(2 * sizeof(int));
+	matrix[2] = (int *)malloc(2 * sizeof(int));
 	matrix[0][0] = 5;
 	matrix[0][1] = 10;
 	matrix[1][0] = 2;
 	matrix[1][1] = 4;
+	matrix[2][0] = 3;
+	matrix[2][1] = 6;
 	//Show matrix
 	i = 0;
-	while (i < 2)
+	while (i < 3)
 	{
 		j = 0;
 		while (j < 2)
@@ -49,7 +52,7 @@ int	main(void)
 		i++;
 	}
 	//Free matrix
-	free_twodee(matrix, 2);
+	free_twodee(matrix, 4);
 	return (0);
 }
 //*/
