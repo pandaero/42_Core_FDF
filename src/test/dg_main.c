@@ -1,49 +1,57 @@
-//Tests for the functions in draw.c
+// Tests for the functions in draw_grid.c
 #include "../../fdf.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 /*
-//Function that serves for hook actions for mlx.
-void	hook(void *param)
+//Function that serves for hook actions for mlx. (Only quit with ESC)
+static int	exithook(t_mlxdata *mlxdata)
 {
-	mlx_t	*mlx;
-
-	mlx = param;
-	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(mlx);
+	mlx_destroy_window(mlxdata->mlx, mlxdata->mlxwindow);
+	exit(0);
 }
 //*/
 
-/* draw_grid Test
-// gcc dg_main.c ../draw_grid.c ../../libft/libft.a ../../mlx42/libmlx42.a -lglfw
-// gcc draw_main.c ../draw.c ../../minilibx/libmlx_intel-mac.a -lXext -lX11
-int	main(void)
+/* Test for draw_grid.c
+// cc -lmlx -framework OpenGL -framework AppKit dg_main.c ../draw_grid.c ../draw.c ../map_reader.c ../projection.c ../quick_pixel.c  ../utils.c ../../libft/libft.a
+int	main(int argc, char **argv)
 {
-	mlx_image_t	*image;
-	t_mlxdata	*mlxdata;
-	t_mapdata	*mapdata;
+	t_mlxdata	*mlx;
+	t_imgdata	*img;
+	t_mapdata	*map;
+	t_pointpair	*pp;
 	int			ret;
 
-	mapdata = (t_mapdata *)malloc(sizeof(t_mapdata));
-	mlxdata = (t_mlxdata *)malloc(sizeof(t_mlxdata));
-	mlxdata->mlx = mlx_init(WIDTH, HEIGHT, "Grid Draw Test", true);
-	mlxdata->image = mlx_new_image(mlxdata->mlx, WIDTH, HEIGHT);
-	if (!image)
+	mlx = (t_mlxdata *)malloc(sizeof(t_mlxdata));
+	img = (t_imgdata *)malloc(sizeof(t_imgdata));
+	map = (t_mapdata *)malloc(sizeof(t_mapdata));
+	pp = (t_pointpair *)malloc(sizeof(t_pointpair));
+	mlx->mlx = mlx_init();
+	mlx->mlxwindow = mlx_new_window(mlx->mlx, 1200, 900, "Grid Test");
+	img->image = mlx_new_image(mlx->mlx, 1200, 900);
+	img->address = mlx_get_data_addr(img->image, &img->bits_pp, \
+										&img->line_len, &img->endian);
+	if (!img->image || !mlx->mlxwindow || !mlx->mlx)
 	{
-		mlx_terminate(mlxdata->mlx);
+		printf("MLX Error.\n");
 		return (0);
 	}
-	ret = map_data(mapdata, "../../test_maps/100-6.fdf");
+	ret = map_data(map, argv[1]);
 	if (ret == -1)
+	{
+		printf("Map Error.\n");
 		return (0);
-	draw_horiz(mapdata, mlxdata);
-	draw_vert(mapdata, mlxdata);
-	mlx_image_to_window(mlxdata->mlx, mlxdata->image, 0, 0);
-	mlx_loop_hook(mlxdata->mlx, &hook, mlxdata->mlx);
-	mlx_loop(mlxdata->mlx);
-	mlx_terminate(mlxdata->mlx);
-	free(mapdata);
-	free(mlxdata);
+	}
+	draw_horiz(map, img);
+	draw_vert(map, img);
+	mlx_put_image_to_window(mlx->mlx, mlx->mlxwindow, img->image, 0, 0);
+	mlx_hook(mlx->mlxwindow, 17, 0, &exithook, mlx);
+	mlx_loop(mlx->mlx);
+	free(mlx);
+	free(img);
+	free_twodee(map->height_data, map->depth);
+	free(map);
+	free(pp);
 	return (0);
 }
 //*/
