@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 22:49:26 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/25 12:07:06 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/26 13:52:43 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,14 @@ int	map_width(char *mapfile)
 }
 
 //Function fills an int array with data from a map file line.
-static void	height_matrix(int *height_row, char *line)
+static void	height_matrix(int *height_row, char *line, int len)
 {
 	char	**elms;
 	int		i;
 
 	elms = ft_split(line, ' ');
 	i = 0;
-	while (elms[i])
+	while (i < len)
 	{
 		height_row[i] = ft_atoi(elms[i]);
 		free(elms[i]);
@@ -92,21 +92,21 @@ int	map_data(t_mapdata *data, char *mapfile)
 	int		i;
 
 	data->width = map_width(mapfile);
-	if (data->width == -1)
+	fd = open(mapfile, O_RDONLY, 0);
+	if (data->width == -1 || fd == -1)
 		return (-1);
 	data->depth = map_depth(mapfile);
-	data->height_data = (int **)malloc((data->depth + 1) * sizeof(int *));
+	data->height_data = (int **)malloc((data->depth) * sizeof(int *));
 	i = 0;
-	while (i <= data->depth)
-		data->height_data[i++] = (int *)malloc((data->width + 1) * sizeof(int));
-	fd = open(mapfile, O_RDONLY, 0);
+	while (i < data->depth)
+		data->height_data[i++] = (int *)malloc((data->width) * sizeof(int));
 	line = get_next_line(fd);
 	i = 0;
-	while (line != 0)
+	while (i < data->depth)
 	{
 		if (i > 0)
 			line = get_next_line(fd);
-		height_matrix(data->height_data[i], line);
+		height_matrix(data->height_data[i], line, data->width);
 		free(line);
 		i++;
 	}
