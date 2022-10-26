@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 23:51:38 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/07 01:44:23 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/26 15:39:41 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	projected_horiz(t_pointpair *pp, t_mapdata *mapdata, int x, int y)
 	int	z1;
 	int	z2;
 
-	z1 = mapdata->height_data[y][x];
-	z2 = mapdata->height_data[y][x + 1];
+	z1 = mapdata->height_data[y - 1][x - 1];
+	z2 = mapdata->height_data[y - 1][x];
 	isometric(&pp->x1, &pp->y1, z1);
 	isometric(&pp->x2, &pp->y2, z2);
 }
@@ -31,35 +31,35 @@ void	projected_vert(t_pointpair *pp, t_mapdata *mapdata, int x, int y)
 	int	z1;
 	int	z2;
 
-	z1 = mapdata->height_data[y][x];
-	z2 = mapdata->height_data[y + 1][x];
+	z1 = mapdata->height_data[y - 1][x - 1];
+	z2 = mapdata->height_data[y][x - 1];
 	isometric(&pp->x1, &pp->y1, z1);
 	isometric(&pp->x2, &pp->y2, z2);
 }
 
 //Function connects points from the map with a line grid. Propagates horizontal.
-void	draw_horiz(t_mapdata *mapdata, t_mlxdata *mlxdata)
+void	draw_horiz(t_mapdata *mapdata, t_imgdata *imgdata)
 {
 	int			xloc;
 	int			yloc;
 	t_pointpair	*pp;
 
 	pp = (t_pointpair *)malloc(sizeof(t_pointpair));
-	yloc = 0;
-	while (yloc < mapdata->depth)
+	yloc = 1;
+	while (yloc <= mapdata->depth)
 	{
-		xloc = 0;
+		xloc = 1;
 		while (xloc < mapdata->width)
 		{
-			pp->x1 = xloc;
-			pp->y1 = yloc;
-			pp->x2 = xloc + 1;
-			pp->y2 = yloc;
+			pp->x1 = xloc - 1;
+			pp->y1 = yloc - 1;
+			pp->x2 = xloc;
+			pp->y2 = yloc - 1;
 			transform(pp, mapdata, 0);
 			projected_horiz(pp, mapdata, xloc, yloc);
 			translate(pp);
-			if (xloc < mapdata->width - 1)
-				bresenham_draw(pp, mlxdata->image);
+			if (xloc < mapdata->width)
+				bresenham_draw(pp, imgdata);
 			xloc++;
 		}
 		yloc++;
@@ -68,28 +68,28 @@ void	draw_horiz(t_mapdata *mapdata, t_mlxdata *mlxdata)
 }
 
 //Function connects points from the map with a line grid. Propagates vertical.
-void	draw_vert(t_mapdata *mapdata, t_mlxdata *mlxdata)
+void	draw_vert(t_mapdata *mapdata, t_imgdata *imgdata)
 {
 	int			xloc;
 	int			yloc;
 	t_pointpair	*pp;
 
 	pp = (t_pointpair *)malloc(sizeof(t_pointpair));
-	yloc = 0;
+	yloc = 1;
 	while (yloc < mapdata->depth)
 	{
-		xloc = 0;
-		while (xloc < mapdata->width)
+		xloc = 1;
+		while (xloc <= mapdata->width)
 		{
-			pp->x1 = xloc;
-			pp->y1 = yloc;
-			pp->x2 = xloc;
-			pp->y2 = yloc + 1;
+			pp->x1 = xloc - 1;
+			pp->y1 = yloc - 1;
+			pp->x2 = xloc - 1;
+			pp->y2 = yloc;
 			transform(pp, mapdata, 0);
 			projected_vert(pp, mapdata, xloc, yloc);
 			translate(pp);
-			if (yloc < mapdata->depth - 1)
-				bresenham_draw(pp, mlxdata->image);
+			if (yloc < mapdata->depth)
+				bresenham_draw(pp, imgdata);
 			xloc++;
 		}
 		yloc++;
