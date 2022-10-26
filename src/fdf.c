@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 21:27:04 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/26 17:34:34 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/26 20:33:25 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	mlxevents(t_mlxdata *mlxdata, t_imgdata *imgdata)
 }
 
 //Function frees program allocated elements.
-static void	free_prog(void *mlxdata, void *imgdata, t_mapdata *mapdata)
+static void	free_prog(t_mlxdata *mlxdata, void *imgdata, t_mapdata *mapdata)
 {
 	mlx_destroy_window(mlxdata->mlx, mlxdata->mlxwindow);
 	free_twodee(mapdata->height_data, mapdata->depth);
