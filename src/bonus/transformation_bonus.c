@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:48:45 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/27 17:51:51 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/27 18:45:01 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	rotate(t_pointpair *pp, t_fulldata *full)
 	x2cp = pp->x2;
 	y2cp = pp->y2;
 	pp->x1 = (x1cp * cos(full->rotation)) - (y1cp * sin(full->rotation));
-	pp->y1 = (x1cp * sin(full->rotation)) + (y2cp * cos(full->rotation));
-	pp->x2 = (x2cp * cos(full->rotation)) - (y1cp * sin(full->rotation));
+	pp->y1 = (x1cp * sin(full->rotation)) + (y1cp * cos(full->rotation));
+	pp->x2 = (x2cp * cos(full->rotation)) - (y2cp * sin(full->rotation));
 	pp->y2 = (x2cp * sin(full->rotation)) + (y2cp * cos(full->rotation));
 }
