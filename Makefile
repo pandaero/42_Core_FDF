@@ -6,7 +6,7 @@
 #    By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/30 23:15:27 by pandalaf          #+#    #+#              #
-#    Updated: 2022/10/27 18:02:44 by pandalaf         ###   ########.fr        #
+#    Updated: 2022/10/27 19:49:07 by pandalaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,9 +68,8 @@ clean:
 
 # Clean all non-source files
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(BONUS_NAME)
 	make -C $(LIBFT_PATH) fclean
-	make -C $(MLX_PATH) fclean
 
 # Clean everything and make again
 re: fclean all
