@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 21:21:21 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/27 17:05:40 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/27 18:44:48 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void	draw_horiz_bonus(t_fulldata *full)
 			pp->y1 = yloc - 1;
 			pp->x2 = xloc;
 			pp->y2 = yloc - 1;
-			transform_bonus(pp, full);
+			scale_bonus(pp, full);
+			rotate(pp, full);
 			projected_horiz_bonus(pp, full, xloc, yloc);
 			translate_bonus(pp, full);
 			if (xloc < full->map->width)
@@ -60,8 +61,9 @@ void	draw_vert_bonus(t_fulldata *full)
 			pp->x1 = xloc - 1;
 			pp->y1 = yloc - 1;
 			pp->x2 = xloc - 1;
-			pp->y2 = yloc;
-			transform_bonus(pp, full);
+			pp->y2 = yloc;	
+			scale_bonus(pp, full);
+			rotate(pp, full);
 			projected_vert_bonus(pp, full, xloc, yloc);
 			translate_bonus(pp, full);
 			if (yloc < full->map->depth)
