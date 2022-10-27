@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:51:38 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/27 17:08:34 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/27 17:15:06 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 void	initialise(t_fulldata *full)
 {
 	full->projection = 0;
+	full->rotation = 0;
 	full->translation_horiz = X_OFFSET;
 	full->translation_vert = Y_OFFSET;
 	full->zoom = (WIDTH / full->map->width + HEIGHT / full->map->depth) / 4;
