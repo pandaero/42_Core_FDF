@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 16:36:06 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/27 17:54:17 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/27 19:20:16 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,14 @@ int		map_data_bonus(t_fulldata *full, char *mapfile);
 void	wipe_image(t_imgdata *data);
 
 // GRAPHIC TRANSFORMATIONS
+//Function applies a parallel projection. Achieved using 45 deg.
+void	parallel(int *xco, int *yco, int zco);
+//Function rotates a point pair through an angle in radians.
+void	rotate(t_pointpair *pp, t_fulldata *full);
 //Function scales the point pair values by a factor.
 void	scale_bonus(t_pointpair *pp, t_fulldata *full);
 //Function translates the points.
 void	translate_bonus(t_pointpair *pp, t_fulldata *full);
-//Function rotates a point pair through an angle in radians.
-void	rotate(t_pointpair *pp, t_fulldata *full);
 //Function applies projection to a point pair, given map data. Horizontal pairs.
 void	projected_horiz_bonus(t_pointpair *pp, t_fulldata *full, int x, int y);
 //Function applies projection to a point pair, given map data. Vertical pairs.
