@@ -1,4 +1,0 @@
-[submodule "libft"]
-	path = libft
-	url = https://github.com/pandaero/42_Core_libft.git
-	branch = stand-alone-plus
