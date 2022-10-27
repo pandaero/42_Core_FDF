@@ -6,13 +6,13 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:51:38 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/27 17:54:38 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/27 17:57:13 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../fdf_bonus.h"
 
-//Function activates for each frame.
+//Function determines actions for each new frame.
 int	frame(t_fulldata *fulldata)
 {
 	wipe_image(fulldata->img);
