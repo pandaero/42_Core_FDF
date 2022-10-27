@@ -6,7 +6,7 @@
 #    By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/30 23:15:27 by pandalaf          #+#    #+#              #
-#    Updated: 2022/10/27 17:58:30 by pandalaf         ###   ########.fr        #
+#    Updated: 2022/10/27 18:02:44 by pandalaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ BONUS_NAME := fdf_bonus
 # Compiler options
 CC := cc
 CFLAGS := -Wall -Werror -Wextra
-COPTIONS :=
+COPTIONS := -g
 # Libft location
 LIBFT := libft.a
 LIBFT_PATH := libft/
