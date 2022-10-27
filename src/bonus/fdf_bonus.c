@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 16:32:01 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/27 17:11:31 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/27 17:19:54 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ static int	keypress(int key, t_fulldata *fulldata)
 	if (key == 1)
 		fulldata->translation_vert += 10;
 	if (key == 14)
-		fulldata->rotation += 0.1;
+		fulldata->rotation += 0.2;
 	if (key == 12)
-		fulldata->rotation -= 0.1;
+		fulldata->rotation -= 0.2;
 	if (key == 15)
 		fulldata->zoom += 1;
 	if (key == 3)
