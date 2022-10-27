@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 16:32:01 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/27 19:16:04 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/27 19:31:19 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,7 @@ int	main(int argc, char **argv)
 {
 	t_fulldata	*full;
 
-	if (argc != 2)
-		return (1);
+	error_handling(argc, argv[1]);
 	full = (t_fulldata *)malloc(sizeof(t_fulldata));
 	full->map = (t_mapdata *)malloc(sizeof(t_mapdata));
 	map_data_bonus(full, argv[1]);
