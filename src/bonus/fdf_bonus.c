@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 16:32:01 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/27 16:58:48 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/27 17:11:31 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	main(int argc, char **argv)
 	mlx_hook(full->mlxwin, 2, 0, keypress, full);
 	mlx_hook(full->mlxwin, 3, 0, keyrelease, full);
 	mlx_hook(full->mlxwin, 17, 0, closing, full);
-	mlx_loop_hook(full->mlx, frame,full);
+	mlx_loop_hook(full->mlx, frame, full);
 	mlx_loop(full->mlx);
 	free(full);
 	return (0);
