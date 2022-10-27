@@ -6,15 +6,15 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:48:45 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/27 17:29:04 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/27 17:51:51 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../fdf_bonus.h"
 #include <math.h>
 
-//Function applies scaling transformations to grid.
-void	transform_bonus(t_pointpair *pp, t_fulldata *full)
+//Function scales the point pair values by a factor.
+void	scale_bonus(t_pointpair *pp, t_fulldata *full)
 {
 	xyscale(&pp->x1, &pp->y1, full->zoom, 0);
 	xyscale(&pp->x2, &pp->y2, full->zoom, 0);
@@ -29,7 +29,7 @@ void	translate_bonus(t_pointpair *pp, t_fulldata *full)
 	pp->y2 += full->translation_vert;
 }
 
-//Function rotates a point pair through the given angle in radians.
+//Function rotates a point pair through an angle in radians.
 void	rotate(t_pointpair *pp, t_fulldata *full)
 {
 	int	x1cp;
