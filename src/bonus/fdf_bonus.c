@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 16:32:01 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/27 17:19:54 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/27 19:16:04 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	keypress(int key, t_fulldata *fulldata)
 	{
 		if (fulldata->projection == 0)
 			fulldata->projection = 1;
-		if (fulldata->projection == 1)
+		else if (fulldata->projection == 1)
 			fulldata->projection = 0;
 	}
 	return (0);
