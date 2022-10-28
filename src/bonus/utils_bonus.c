@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:51:38 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/27 17:57:13 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/28 10:03:15 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	initialise(t_fulldata *full)
 {
 	full->projection = 0;
 	full->rotation = 0;
-	full->translation_horiz = X_OFFSET;
-	full->translation_vert = Y_OFFSET;
+	full->translation_horiz = WIDTH * 2 / 5;
+	full->translation_vert = HEIGHT * 1 / 5;
 	full->zoom = (WIDTH / full->map->width + HEIGHT / full->map->depth) / 4;
 	full->mlx = mlx_init();
 	full->mlxwin = mlx_new_window(full->mlx, WIDTH, HEIGHT, "FdF Bonus");
