@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   project.c                                          :+:      :+:    :+:   */
+/*   projection.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 21:49:57 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/07 01:45:59 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/28 10:00:53 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	translate(t_pointpair *pp)
 	int	x_off;
 	int	y_off;
 
-	x_off = X_OFFSET;
-	y_off = Y_OFFSET;
+	x_off = WIDTH * 2 / 5;
+	y_off = HEIGHT * 1 / 5;
 	pp->x1 += x_off;
 	pp->y1 += y_off;
 	pp->x2 += x_off;

@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 23:21:11 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/26 20:27:20 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/28 09:58:37 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,6 @@
 # endif
 # ifndef HEIGHT
 #  define HEIGHT 900
-# endif
-# ifndef X_OFFSET
-#  define X_OFFSET WIDTH*2/5
-# endif
-# ifndef Y_OFFSET
-#  define Y_OFFSET HEIGHT*1/5
 # endif
 
 # include "libft/libft.h"
@@ -48,7 +42,7 @@ typedef struct s_bresenham
 	int	x0;
 	int	y0;
 	int	dx;
-	int dy;
+	int	dy;
 	int	sx;
 	int	sy;
 	int	err;
@@ -70,8 +64,13 @@ typedef struct s_mlxdata
 	void	*mlxwindow;
 }			t_mlxdata;
 
+// PROGRAM-RELATED
 //Function handles input errors.
 void	error_handling(int argcnt, char *file);
+//Function frees a 2D int array, given its size.
+void	free_twodee(int **intarr, int sz);
+
+// MAP READING
 //Function checks that all the values in a 1D array are the same.
 int		ft_chkarr(int *arr, int size);
 //Function reads from a map file to determine the depth of the map.
@@ -80,20 +79,22 @@ int		map_depth(char *mapfile);
 int		map_width(char *mapfile);
 //Function fills map data from a mapfile (or returns error if invalid).
 int		map_data(t_mapdata *data, char *mapfile);
-//Function frees a 2D int array, given its size.
-void	free_twodee(int **intarr, int sz);
+
+// MLX DRAWING
 //Function places a pixel in an image more quickly than with the pixel_put fn.
 void	quick_put_pixel(t_imgdata *data, int x, int y, int color);
 //Function draws a line between points using Bresenham's algorithm.
 void	bresenham_draw(t_pointpair *points, t_imgdata *imgdata);
-//Function applies transformations before using Bresenham's drawing.
-void	transform(t_pointpair *pp, t_mapdata *mapdata, float uniform);
+
+// GRAPHICS
+//Function projects the map data through isometric projection.
+void	isometric(int *xco, int *yco, int zco);
 //Function performs scaling on the input grid.
 void	xyscale(int *x, int *y, int factor, float uni);
 //Function to perform translation of the whole image.
 void	translate(t_pointpair *pp);
-//Function projects the map data through isometric projection.
-void	isometric(int *xco, int *yco, int zco);
+//Function applies transformations before using Bresenham's drawing.
+void	transform(t_pointpair *pp, t_mapdata *mapdata, float uniform);
 //Function connects points from the map with a line grid. Propagates horizontal.
 void	draw_horiz(t_mapdata *mapdata, t_imgdata *imgdata);
 //Function connects points from the map with a line grid. Propagates vertical.
