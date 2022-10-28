@@ -6,10 +6,9 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 16:36:06 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/27 19:20:16 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/28 09:24:25 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef FDF_BONUS_H
 # define FDF_BONUS_H
