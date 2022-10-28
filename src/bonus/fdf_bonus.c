@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 16:32:01 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/27 19:31:19 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/28 11:27:40 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ static int	keyrelease(int key, t_fulldata *fulldata)
 		mlx_destroy_window(fulldata->mlx, fulldata->mlxwin);
 		exit(0);
 	}
+	if (key == 6)
+		fulldata->scale -= 1;
+	if (key == 7)
+		fulldata->scale += 1;
 	return (0);
 }
 

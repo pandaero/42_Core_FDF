@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 21:26:33 by pandalaf          #+#    #+#             */
-/*   Updated: 2022/10/27 19:11:43 by pandalaf         ###   ########.fr       */
+/*   Updated: 2022/10/28 11:24:09 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	projected_horiz_bonus(t_pointpair *pp, t_fulldata *full, int x, int y)
 	int	z1;
 	int	z2;
 
-	z1 = full->map->height_data[y - 1][x - 1];
-	z2 = full->map->height_data[y - 1][x];
+	z1 = full->map->height_data[y - 1][x - 1] * full->scale;
+	z2 = full->map->height_data[y - 1][x] * full->scale;
 	if (full->projection == 0)
 	{
 		isometric(&pp->x1, &pp->y1, z1);
@@ -51,8 +51,8 @@ void	projected_vert_bonus(t_pointpair *pp, t_fulldata *full, int x, int y)
 	int	z1;
 	int	z2;
 
-	z1 = full->map->height_data[y - 1][x - 1];
-	z2 = full->map->height_data[y][x - 1];
+	z1 = full->map->height_data[y - 1][x - 1] * full->scale;
+	z2 = full->map->height_data[y][x - 1] * full->scale;
 	if (full->projection == 0)
 	{
 		isometric(&pp->x1, &pp->y1, z1);
