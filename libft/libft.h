@@ -1,4 +1,4 @@
-		/* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
@@ -110,7 +110,7 @@ void			ft_lstclear(t_list **lst, void (*del)(void *));
 //Function applies a function to each of the linked list's nodes.
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 //Function maps a function to every node's content in a linked list.
-t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+t_list			*ft_lstmap(t_list *lt, void *(*f)(void *), void (*del)(void *));
 //Function prints out a formatted string based on inputs. Returns written chars.
 int				ft_printf(const char *format, ...);
 //Function prints out a character to the standard output. Returns written count.
